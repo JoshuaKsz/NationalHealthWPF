@@ -6,7 +6,7 @@
         xmlns:viewModel="clr-namespace:WpfAppNET.MVVM.ViewModel"
         xmlns:local="clr-namespace:WpfAppNET"
         mc:Ignorable="d"
-        Height="600" Width="920"
+        Height="700" Width="1000"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -17,7 +17,8 @@
     </Window.DataContext>
     
     <Border Background="#272537"
-            CornerRadius="20">
+            CornerRadius="20"
+            MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -54,7 +55,8 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding Class1ViewCommand}"/>
             </StackPanel>
 
             <TextBox Width="250"

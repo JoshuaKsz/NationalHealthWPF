@@ -13,23 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfAppNET
+namespace WpfAppNET.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Class1View.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Class1View : UserControl
     {
-        public MainWindow()
+        public Class1View()
         {
             InitializeComponent();
         }
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
+            //MessageBox.Show("Hello, this is a test message!", "Test", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -16,4 +16,5 @@ namespace WpfAppNET
     public partial class App : Application
     {
     }
+
 }

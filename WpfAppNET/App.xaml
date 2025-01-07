@@ -20,6 +20,10 @@
             <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
                 <view:DiscoveryView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:Class1ViewModel}">
+                <view:Class1View/>
+            </DataTemplate>
             
         </ResourceDictionary>
     </Application.Resources>
