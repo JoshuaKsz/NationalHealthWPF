@@ -1,5 +1,6 @@
 ﻿using System;
 using WpfAppNET.Core;
+using WpfAppNET.MVVM.Model;
 using WpfAppNET.MVVM.ViewModel;
 
 namespace WpfAppNET.MVVM.ViewModel
@@ -10,12 +11,15 @@ namespace WpfAppNET.MVVM.ViewModel
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand DiscoveryViewCommand { get; set; }
         public RelayCommand Class1ViewCommand { get; set; }
+        public RelayCommand ProvinsiViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
 
         public DiscoveryViewModel DiscoveryVM { get; set; }
 
         public Class1ViewModel Class1VM { get; set; }
+
+        public ProvinsiViewModel ProvinsiVM { get; set; }
 
         private object _currentView;
         
@@ -35,6 +39,7 @@ namespace WpfAppNET.MVVM.ViewModel
             HomeVM = new HomeViewModel();
             DiscoveryVM = new DiscoveryViewModel();
             Class1VM = new Class1ViewModel();
+            ProvinsiVM = new ProvinsiViewModel();
             CurrentView = HomeVM;
             HomeViewCommand = new RelayCommand(o => 
             {
@@ -50,6 +55,13 @@ namespace WpfAppNET.MVVM.ViewModel
             {
                 
                 CurrentView = Class1VM;
+            });
+
+
+            ProvinsiViewCommand = new RelayCommand(o =>
+            {
+
+                CurrentView = ProvinsiVM;
             });
         }
     }

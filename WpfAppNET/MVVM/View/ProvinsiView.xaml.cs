@@ -13,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfAppNET
+namespace WpfAppNET.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProvinsiView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProvinsiView : UserControl
     {
-        public MainWindow()
+        public ProvinsiView()
         {
             InitializeComponent();
-
-        }
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
         }
     }
 }

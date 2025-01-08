@@ -7,22 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#1B1B1B">
-    <Grid>
+    <Canvas>
 
-               
-        <Image Width="750"
-        Height="750"
-        Source="/Images/indonesia.png"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
 
-        </Image>
-            <Button Content="Refresh" 
+        <ComboBox Name="comboBox" Width="200" Height="30" HorizontalAlignment="Left" Canvas.Left="44" Canvas.Top="22" VerticalAlignment="Top">
+            <ComboBoxItem Content="Option 1" />
+            <ComboBoxItem Content="Option 2" />
+            <ComboBoxItem Content="Option 3" />
+        </ComboBox>
+        <DatePicker Name="datePicker0" Canvas.Left="315" Canvas.Top="25" />
+        <DatePicker Name="datePicker1" Canvas.Left="480" Canvas.Top="25" />
+
+        <Button Content="Refresh" 
                 Background="#3B3B3B" 
                 Foreground="White" 
-                HorizontalAlignment="Right" 
-                Margin="0,0,20,20" 
-                VerticalAlignment="Bottom"
-                Width="100"/>
-    </Grid>
+                Width="100" Canvas.Left="609" Canvas.Top="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Image Width="834"
+        Source="/Images/indonesia.png"
+        Margin="0,70,0,0" Height="388"/>
+
+    </Canvas>
+
 </UserControl>

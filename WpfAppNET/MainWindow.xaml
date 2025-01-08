@@ -51,12 +51,18 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding DiscoveryViewCommand}"/>
                 
-                <RadioButton Content="Featured"
+                <RadioButton Content="Penyakit"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding Class1ViewCommand}"/>
+                <RadioButton Content="Provinsi"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding ProvinsiViewModel}"/>
             </StackPanel>
 
             <TextBox Width="250"

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppNET.MVVM.ViewModel;
 
 namespace WpfAppNET.MVVM.View
 {
@@ -23,11 +24,17 @@ namespace WpfAppNET.MVVM.View
         public Class1View()
         {
             InitializeComponent();
+
         }
 
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Hello, this is a test message!", "Test", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

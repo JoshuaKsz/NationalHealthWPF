@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\ProvinsiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,10 +101,13 @@
     </Compile>
     <Compile Include="MVVM\Model\Class1.cs" />
     <Compile Include="MVVM\Model\Penyakit.cs" />
+    <Compile Include="MVVM\Model\Provinsi.cs" />
+    <Compile Include="MVVM\Model\TextBox.cs" />
     <Compile Include="MVVM\ViewModel\Class1ViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ProvinsiViewModel.cs" />
     <Compile Include="MVVM\View\Class1View.xaml.cs">
       <DependentUpon>Class1View.xaml</DependentUpon>
     </Compile>
@@ -109,6 +116,9 @@
     </Compile>
     <Compile Include="MVVM\View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ProvinsiView.xaml.cs">
+      <DependentUpon>ProvinsiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -8,23 +8,61 @@
         d:DesignHeight="450" d:DesignWidth="800"
         Background="#1B1B1B">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="id_penyakit" Width="200" Margin="112,36,0,0"
+               FontSize="15"
+               FontFamily="Segoe UI" 
+                FontWeight="Bold" 
+                Foreground="White" 
+                HorizontalContentAlignment="left"
+                VerticalContentAlignment="Center"
+               HorizontalAlignment="Left" VerticalAlignment="Top"
+                Padding="10"
+               />
+        <Label Content="mikroorganisme" Width="200" Margin="112,78,0,0" FontSize="15" 
+           FontFamily="Segoe UI" 
+           FontWeight="Bold" 
+           Foreground="White" 
+           HorizontalContentAlignment="left"
+           VerticalContentAlignment="Center"
+               HorizontalAlignment="Left" VerticalAlignment="Top"
+           Padding="10"/>
+        <Label Content="nama_family" Width="200" Margin="112,118,0,0" FontSize="15" 
+           FontFamily="Segoe UI" 
+           FontWeight="Bold" 
+           Foreground="White" 
+           HorizontalContentAlignment="left"
+           VerticalContentAlignment="Center"
+               HorizontalAlignment="Left" VerticalAlignment="Top"
+           Padding="10"/>
+        <TextBox Text="{Binding SelectedPenyakitTextBox.id_penyakit}" Width="200" Height="25" Margin="336,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
-        <TextBox Name="txtFirst" Width="200" Height="25" Margin="56,40,544,385" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <TextBox Text="{Binding SelectedPenyakitTextBox.mikroorganisme}" Width="200" Height="25" Margin="336,86,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-        <TextBox Name="txtSecond" Width="200" Height="25" Margin="56,79,544,346" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Text="{Binding SelectedPenyakitTextBox.nama_family}" Width="200" Height="24" Margin="336,126,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-        <Button Content="Update" Height="23" HorizontalAlignment="Left" Margin="310,40,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="141" Command="{Binding Path=UpdateCommand}" />
 
-        <Button Content="button Test" Height="23" HorizontalAlignment="Left" Margin="310,79,0,0" Name="btnTest" VerticalAlignment="Top" Width="141" Command="{Binding Path=TestCommand}" Click="btnTest_Click" />
-        <ListView Name="UserGrid" Grid.Row="1" Margin="4,178,12,13" ItemsSource="{Binding PenyakitList}" Width="300">
+        <Button Content="Insert" Height="23" HorizontalAlignment="Left" Margin="555,46,0,0" Name="btnTest" VerticalAlignment="Top" Width="141" Command="{Binding Path=TestCommand}" Click="btnTest_Click" />
+
+        <Button Content="Update" Height="23" HorizontalAlignment="Left" Margin="555,86,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="141" Command="{Binding Path=UpdateCommand}" Click="btnUpdate_Click" />
+
+        <Button Content="Delete" Height="23" HorizontalAlignment="Left" Margin="557,127,0,0" Name="btnDelete" VerticalAlignment="Top" Width="141" Command="{Binding Path=DeleteCommand}" Click="btnTest_Click" />
+
+
+        <ListView Name="UserGrid" Margin="212,163,191,28" ItemsSource="{Binding PenyakitList}"
+                  SelectionMode="Single" 
+                  SelectedItem="{Binding SelectedPenyakit}">
             <ListView.View>
                 <GridView x:Name="grdTest">
-                    <GridViewColumn Header="id_penyakit" DisplayMemberBinding="{Binding id_penyakit}" Width="100"/>
-                    <GridViewColumn Header="mikroorganisme" DisplayMemberBinding="{Binding mikroorganisme}" Width="100"/>
-                    <GridViewColumn Header="nama_family" DisplayMemberBinding="{Binding nama_family}" Width="100"/>
+                    <GridViewColumn Header="id_penyakit" DisplayMemberBinding="{Binding id_penyakit}" Width="125"/>
+                    <GridViewColumn Header="mikroorganisme" DisplayMemberBinding="{Binding mikroorganisme}" Width="125"/>
+                    <GridViewColumn Header="nama_family" DisplayMemberBinding="{Binding nama_family}" Width="125"/>
                 </GridView>
             </ListView.View>
         </ListView>
+
     </Grid>
 
 </UserControl>
