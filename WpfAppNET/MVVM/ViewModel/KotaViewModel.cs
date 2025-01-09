@@ -12,71 +12,71 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 
+
 namespace WpfAppNET.MVVM.ViewModel
 {
-    internal class ProvinsiViewModel : INotifyPropertyChanged
+    internal class KotaViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Provinsi> _ProvinsiList;
+        private ObservableCollection<Kota> _KotaList;
 
-        public ObservableCollection<Provinsi> ProvinsiList
+        public ObservableCollection<Kota> KotaList
         {
-            get { return _ProvinsiList; }
+            get { return _KotaList; }
             set
             {
-                _ProvinsiList = value;
-                OnPropertyChanged(nameof(ProvinsiList));
+                _KotaList = value;
+                OnPropertyChanged(nameof(KotaList));
             }
         }
 
-        public ProvinsiViewModel()
+        public KotaViewModel()
         {
-            _ProvinsiList = new ObservableCollection<Provinsi>();
-
-            SelectedProvinsiTextBox = new Provinsi();
-
+            _KotaList = new ObservableCollection<Kota>();
+            SelectedKotaTextBox = new Kota();
             LoadData();
         }
 
-        private Provinsi _selectedProvinsi;
-        private Provinsi _selectedProvinsiTextBox;
+        private Kota _selectedKota;
+        private Kota _selectedKotaTextBox;
 
-        public Provinsi SelectedProvinsi
+        public Kota SelectedKota
         {
-            get { return _selectedProvinsi; }
+            get { return _selectedKota; }
             set
             {
-                if (_selectedProvinsi != value)
+                if (_selectedKota != value)
                 {
-                    _selectedProvinsi = value;
+                    _selectedKota = value;
                     CopySelectedToEditable();
-                    OnPropertyChanged(nameof(SelectedProvinsi));
+                    OnPropertyChanged(nameof(SelectedKota));
                 }
             }
         }
-        public Provinsi SelectedProvinsiTextBox
+
+        public Kota SelectedKotaTextBox
         {
-            get { return _selectedProvinsiTextBox; }
+            get { return _selectedKotaTextBox; }
             set
             {
-                if (_selectedProvinsiTextBox != value)
+                if (_selectedKotaTextBox != value)
                 {
-                    _selectedProvinsiTextBox = value;
-                    OnPropertyChanged(nameof(_selectedProvinsiTextBox));
+                    _selectedKotaTextBox = value;
+                    OnPropertyChanged(nameof(SelectedKotaTextBox));
                 }
             }
         }
 
         private void CopySelectedToEditable()
         {
-            if (SelectedProvinsi != null)
+            if (SelectedKota != null)
             {
-                SelectedProvinsiTextBox = new Provinsi
+                SelectedKotaTextBox = new Kota
                 {
-                    id_provinsi = SelectedProvinsi.id_provinsi,
-                    nama_provinsi = SelectedProvinsi.nama_provinsi
+                    id_kota = SelectedKota.id_kota,
+                    id_provinsi = SelectedKota.id_provinsi,
+                    nama_kota = SelectedKota.nama_kota
                 };
-                OnPropertyChanged(nameof(SelectedProvinsiTextBox));
-
+                OnPropertyChanged(nameof(SelectedKotaTextBox));
             }
         }
 
@@ -84,23 +84,18 @@ namespace WpfAppNET.MVVM.ViewModel
         {
             try
             {
+                DataTable dt = GlobalConfig.LoadData("SELECT * FROM Kota");
 
-                DataTable dt = GlobalConfig.LoadData("SELECT * FROM Provinsi");
-
-                _ProvinsiList.Clear();
+                _KotaList.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    _ProvinsiList.Add(new Provinsi
+                    _KotaList.Add(new Kota
                     {
+                        id_kota = row["id_kota"].ToString(),
                         id_provinsi = row["id_provinsi"].ToString(),
-                        nama_provinsi = row["nama_provinsi"].ToString()
+                        nama_kota = row["nama_kota"].ToString()
                     });
                 }
-
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    //MessageBox.Show("Data loaded successfully!", "Load Data", MessageBoxButton.OK, MessageBoxImage.Information);
-                });
             }
             catch (Exception ex)
             {
@@ -109,6 +104,7 @@ namespace WpfAppNET.MVVM.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -131,9 +127,9 @@ namespace WpfAppNET.MVVM.ViewModel
 
         private class Insert : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private KotaViewModel _viewModel;
 
-            public Insert(ProvinsiViewModel viewModel)
+            public Insert(KotaViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -144,17 +140,15 @@ namespace WpfAppNET.MVVM.ViewModel
 
             public void Execute(object parameter)
             {
-
                 SqlParameter[] parameters = {
-                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
-                    new SqlParameter("@nama_provinsi", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedProvinsiTextBox.nama_provinsi.ToString() }
+                    new SqlParameter("@id_kota", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedKotaTextBox.id_kota },
+                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedKotaTextBox.id_provinsi },
+                    new SqlParameter("@nama_kota", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedKotaTextBox.nama_kota }
                 };
-                GlobalConfig.ExecQuery("SPInsProvinsi", parameters);
+                GlobalConfig.ExecQuery("SPInsKota", parameters);
                 _viewModel.LoadData();
             }
-
         }
-
 
         public ICommand UpdateCommand
         {
@@ -164,17 +158,14 @@ namespace WpfAppNET.MVVM.ViewModel
                     mUpdateCommand = new Update(this);
                 return mUpdateCommand;
             }
-            set
-            {
-                mUpdateCommand = value;
-            }
+            set { mUpdateCommand = value; }
         }
 
         private class Update : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private KotaViewModel _viewModel;
 
-            public Update(ProvinsiViewModel viewModel)
+            public Update(KotaViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -186,14 +177,13 @@ namespace WpfAppNET.MVVM.ViewModel
             public void Execute(object parameter)
             {
                 SqlParameter[] parameters = {
-                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
-                    new SqlParameter("@nama_provinsi", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedProvinsiTextBox.nama_provinsi.ToString() }
+                    new SqlParameter("@id_kota", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedKotaTextBox.id_kota },
+                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedKotaTextBox.id_provinsi },
+                    new SqlParameter("@nama_kota", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedKotaTextBox.nama_kota }
                 };
-                GlobalConfig.ExecQuery("SPUpdProvinsi", parameters);
-
+                GlobalConfig.ExecQuery("SPUpdKota", parameters);
                 _viewModel.LoadData();
             }
-
         }
 
         public ICommand DeleteCommand
@@ -204,17 +194,14 @@ namespace WpfAppNET.MVVM.ViewModel
                     mDeleteCommand = new Delete(this);
                 return mDeleteCommand;
             }
-            set
-            {
-                mUpdateCommand = value;
-            }
+            set { mDeleteCommand = value; }
         }
 
         private class Delete : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private KotaViewModel _viewModel;
 
-            public Delete(ProvinsiViewModel viewModel)
+            public Delete(KotaViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -230,19 +217,19 @@ namespace WpfAppNET.MVVM.ViewModel
                 if (result == MessageBoxResult.Yes)
                 {
                     SqlParameter[] parameters = {
-                        new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
+                        new SqlParameter("@id_kota", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedKotaTextBox.id_kota }
                     };
-                    GlobalConfig.ExecQuery("SPDelProvinsi", parameters);
+                    GlobalConfig.ExecQuery("SPDelKota", parameters);
                     _viewModel.LoadData();
-                    _viewModel.SelectedProvinsiTextBox = new Provinsi();
+                    _viewModel.SelectedKotaTextBox = new Kota();
                 }
                 else
                 {
-                    MessageBox.Show("canceled");
+                    MessageBox.Show("Operation canceled");
                 }
             }
-
         }
+
 
 
     }

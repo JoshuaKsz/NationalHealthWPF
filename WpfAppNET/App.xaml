@@ -25,6 +25,29 @@
                 <view:Class1View/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type viewModel:ProvinsiViewModel}">
+                <view:ProvinsiView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:KotaViewModel}">
+                <view:KotaView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:KecamatanViewModel}">
+                <view:KecamatanView/>
+            </DataTemplate>
+                        
+            <DataTemplate DataType="{x:Type viewModel:RumahSakitViewModel}">
+                <view:RumahSakitView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:PendudukViewModel}">
+                <view:PendudukView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RiwayatPenyakitViewModel}">
+                <view:RiwayatPenyakitView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

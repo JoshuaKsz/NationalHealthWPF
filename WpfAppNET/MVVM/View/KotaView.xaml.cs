@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfAppNET.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for ProvinsiView.xaml
+    /// Interaction logic for KotaView.xaml
     /// </summary>
-    public partial class ProvinsiView : UserControl
+    public partial class KotaView : UserControl
     {
-        public ProvinsiView()
+        public KotaView()
         {
             InitializeComponent();
         }

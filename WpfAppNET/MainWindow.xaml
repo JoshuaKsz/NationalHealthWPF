@@ -62,7 +62,40 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding ProvinsiViewModel}"/>
+                             Command="{Binding ProvinsiViewCommand}"/>
+                <RadioButton Content="Kota"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding KotaViewCommand}"/>
+                <RadioButton Content="Kecamatan"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding KecamatanViewCommand}"/>
+
+                <RadioButton Content="Rumah Sakit"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding RumahSakitViewCommand}"/>
+
+                <RadioButton Content="Penduduk"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding PendudukViewCommand}"/>
+
+                <RadioButton Content="Riwayat Penyakit"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding RiwayatPenyakitViewCommand}"/>
             </StackPanel>
 
             <TextBox Width="250"

@@ -66,7 +66,7 @@ namespace NationalHealth
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
-            ShowDataInMessageBox(dt);
+            //ShowDataInMessageBox(dt);
             return dt; // Return the filled DataTable
         }
         public static void ShowDataInMessageBox(DataTable dt)

@@ -21,6 +21,7 @@ namespace WpfAppNET.MVVM.ViewModel
         public Class1ViewModel()
         {
             _PenyakitList = new ObservableCollection<Penyakit>();
+            SelectedPenyakitTextBox = new Penyakit();
 
             LoadData();
         }
@@ -105,7 +106,7 @@ namespace WpfAppNET.MVVM.ViewModel
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    MessageBox.Show("Data loaded successfully!", "Load Data", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //MessageBox.Show("Data loaded successfully!", "Load Data", MessageBoxButton.OK, MessageBoxImage.Information);
                 });
             }
             catch (Exception ex)
@@ -146,7 +147,7 @@ namespace WpfAppNET.MVVM.ViewModel
             public void Execute(object parameter)
             {
                 SqlParameter[] parameters = {
-                new SqlParameter("@id_penyakit", SqlDbType.VarChar, 40) { Value = _viewModel.SelectedPenyakitTextBox.id_penyakit.ToString() },
+                    new SqlParameter("@id_penyakit", SqlDbType.VarChar, 40) { Value = _viewModel.SelectedPenyakitTextBox.id_penyakit.ToString() },
                     new SqlParameter("@mikroorganisme", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedPenyakitTextBox.mikroorganisme.ToString() },
                     new SqlParameter("@nama_family", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedPenyakitTextBox.nama_family.ToString() },
                 };
@@ -240,6 +241,7 @@ namespace WpfAppNET.MVVM.ViewModel
                     };
                     GlobalConfig.ExecQuery("SPDelPenyakit", parameters);
                     _viewModel.LoadData();
+                    _viewModel.SelectedPenyakitTextBox = new Penyakit();
                 }
                 else
                 {

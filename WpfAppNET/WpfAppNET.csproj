@@ -81,7 +81,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\KecamatanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\KotaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\PendudukView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\ProvinsiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\RiwayatPenyakitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\RumahSakitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,14 +120,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MVVM\Model\Class1.cs" />
+    <Compile Include="MVVM\Model\Kecamatan.cs" />
+    <Compile Include="MVVM\Model\Kota.cs" />
+    <Compile Include="MVVM\Model\Penduduk.cs" />
     <Compile Include="MVVM\Model\Penyakit.cs" />
     <Compile Include="MVVM\Model\Provinsi.cs" />
+    <Compile Include="MVVM\Model\RiwayatPenyakit.cs" />
+    <Compile Include="MVVM\Model\RumahSakit.cs" />
     <Compile Include="MVVM\Model\TextBox.cs" />
     <Compile Include="MVVM\ViewModel\Class1ViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\KecamatanViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\KotaViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\PendudukViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProvinsiViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RiwayatPenyakitViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RumahSakitViewModel.cs" />
     <Compile Include="MVVM\View\Class1View.xaml.cs">
       <DependentUpon>Class1View.xaml</DependentUpon>
     </Compile>
@@ -117,8 +147,23 @@
     <Compile Include="MVVM\View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\KecamatanView.xaml.cs">
+      <DependentUpon>KecamatanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\KotaView.xaml.cs">
+      <DependentUpon>KotaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\PendudukView.xaml.cs">
+      <DependentUpon>PendudukView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\ProvinsiView.xaml.cs">
       <DependentUpon>ProvinsiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RiwayatPenyakitView.xaml.cs">
+      <DependentUpon>RiwayatPenyakitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RumahSakitView.xaml.cs">
+      <DependentUpon>RumahSakitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfAppNET.MVVM.View.ProvinsiView"
+﻿<UserControl x:Class="WpfAppNET.MVVM.View.KotaView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,50 +10,54 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="id_provinsi" Width="200" Margin="112,36,0,0"
-           FontSize="15"
-           FontFamily="Segoe UI" 
-            FontWeight="Bold" 
-            Foreground="White" 
-            HorizontalContentAlignment="left"
-            VerticalContentAlignment="Center"
-           HorizontalAlignment="Left" VerticalAlignment="Top"
-            Padding="10"
-           />
-        <Label Content="nama_provinsi" Width="200" Margin="112,78,0,0" FontSize="15" 
+        <Label Content="id_kota" Width="200" Margin="112,36,0,0"
+               FontSize="15"
                FontFamily="Segoe UI" 
                FontWeight="Bold" 
                Foreground="White" 
                HorizontalContentAlignment="left"
                VerticalContentAlignment="Center"
                HorizontalAlignment="Left" VerticalAlignment="Top"
-                Padding="10"/>
+               Padding="10"/>
 
-        <TextBox Text="{Binding SelectedProvinsiTextBox.id_provinsi}" Width="200" Height="25" Margin="336,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="nama_kota" Width="200" Margin="112,78,0,0" FontSize="15" 
+               FontFamily="Segoe UI" 
+               FontWeight="Bold" 
+               Foreground="White" 
+               HorizontalContentAlignment="left"
+               VerticalContentAlignment="Center"
+               HorizontalAlignment="Left" VerticalAlignment="Top"
+               Padding="10"/>
 
-        <TextBox Text="{Binding SelectedProvinsiTextBox.nama_provinsi}" Width="200" Height="25" Margin="336,86,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="id_provinsi" Width="200" Margin="112,120,0,0" FontSize="15" 
+               FontFamily="Segoe UI" 
+               FontWeight="Bold" 
+               Foreground="White" 
+               HorizontalContentAlignment="left"
+               VerticalContentAlignment="Center"
+               HorizontalAlignment="Left" VerticalAlignment="Top"
+               Padding="10"/>
 
-
+        <TextBox Text="{Binding SelectedKotaTextBox.id_kota}" Width="200" Height="25" Margin="336,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <TextBox Text="{Binding SelectedKotaTextBox.nama_kota}" Width="200" Height="25" Margin="336,86,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox Text="{Binding SelectedKotaTextBox.id_provinsi}" Width="200" Height="25" Margin="336,127,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
         <Button Content="Insert" Height="23" HorizontalAlignment="Left" Margin="555,46,0,0" Name="btnInsert" VerticalAlignment="Top" Width="141" Command="{Binding Path=InsertCommand}" Click="btnInsert_Click" />
-
         <Button Content="Update" Height="23" HorizontalAlignment="Left" Margin="555,86,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="141" Command="{Binding Path=UpdateCommand}" Click="btnUpdate_Click" />
-
         <Button Content="Delete" Height="23" HorizontalAlignment="Left" Margin="557,127,0,0" Name="btnDelete" VerticalAlignment="Top" Width="141" Command="{Binding Path=DeleteCommand}" Click="btnTest_Click" />
-
 
         <ListView Name="UserGrid"
                   Margin="212,163,191,28" 
-                  ItemsSource="{Binding ProvinsiList}"
+                  ItemsSource="{Binding KotaList}"
                   SelectionMode="Single" 
-                  SelectedItem="{Binding SelectedProvinsi}">
+                  SelectedItem="{Binding SelectedKota}">
             <ListView.View>
                 <GridView x:Name="grdTest">
+                    <GridViewColumn Header="id_kota" DisplayMemberBinding="{Binding id_kota}" Width="125"/>
+                    <GridViewColumn Header="nama_kota" DisplayMemberBinding="{Binding nama_kota}" Width="125"/>
                     <GridViewColumn Header="id_provinsi" DisplayMemberBinding="{Binding id_provinsi}" Width="125"/>
-                    <GridViewColumn Header="nama_provinsi" DisplayMemberBinding="{Binding nama_provinsi}" Width="125"/>
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
 </UserControl>

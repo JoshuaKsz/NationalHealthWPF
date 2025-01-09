@@ -14,69 +14,68 @@ using System.Data.SqlClient;
 
 namespace WpfAppNET.MVVM.ViewModel
 {
-    internal class ProvinsiViewModel : INotifyPropertyChanged
+    internal class RumahSakitViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Provinsi> _ProvinsiList;
+        private ObservableCollection<RumahSakit> _RumahSakitList;
 
-        public ObservableCollection<Provinsi> ProvinsiList
+        public ObservableCollection<RumahSakit> RumahSakitList
         {
-            get { return _ProvinsiList; }
+            get { return _RumahSakitList; }
             set
             {
-                _ProvinsiList = value;
-                OnPropertyChanged(nameof(ProvinsiList));
+                _RumahSakitList = value;
+                OnPropertyChanged(nameof(RumahSakitList));
             }
         }
 
-        public ProvinsiViewModel()
+        public RumahSakitViewModel()
         {
-            _ProvinsiList = new ObservableCollection<Provinsi>();
-
-            SelectedProvinsiTextBox = new Provinsi();
-
+            _RumahSakitList = new ObservableCollection<RumahSakit>();
+            SelectedRumahSakitTextBox = new RumahSakit();
             LoadData();
         }
 
-        private Provinsi _selectedProvinsi;
-        private Provinsi _selectedProvinsiTextBox;
+        private RumahSakit _selectedRumahSakit;
+        private RumahSakit _selectedRumahSakitTextBox;
 
-        public Provinsi SelectedProvinsi
+        public RumahSakit SelectedRumahSakit
         {
-            get { return _selectedProvinsi; }
+            get { return _selectedRumahSakit; }
             set
             {
-                if (_selectedProvinsi != value)
+                if (_selectedRumahSakit != value)
                 {
-                    _selectedProvinsi = value;
+                    _selectedRumahSakit = value;
                     CopySelectedToEditable();
-                    OnPropertyChanged(nameof(SelectedProvinsi));
+                    OnPropertyChanged(nameof(SelectedRumahSakit));
                 }
             }
         }
-        public Provinsi SelectedProvinsiTextBox
+
+        public RumahSakit SelectedRumahSakitTextBox
         {
-            get { return _selectedProvinsiTextBox; }
+            get { return _selectedRumahSakitTextBox; }
             set
             {
-                if (_selectedProvinsiTextBox != value)
+                if (_selectedRumahSakitTextBox != value)
                 {
-                    _selectedProvinsiTextBox = value;
-                    OnPropertyChanged(nameof(_selectedProvinsiTextBox));
+                    _selectedRumahSakitTextBox = value;
+                    OnPropertyChanged(nameof(SelectedRumahSakitTextBox));
                 }
             }
         }
 
         private void CopySelectedToEditable()
         {
-            if (SelectedProvinsi != null)
+            if (SelectedRumahSakit != null)
             {
-                SelectedProvinsiTextBox = new Provinsi
+                SelectedRumahSakitTextBox = new RumahSakit
                 {
-                    id_provinsi = SelectedProvinsi.id_provinsi,
-                    nama_provinsi = SelectedProvinsi.nama_provinsi
+                    id_rumah_sakit = SelectedRumahSakit.id_rumah_sakit,
+                    nama_rumah_sakit = SelectedRumahSakit.nama_rumah_sakit,
+                    id_kecamatan = SelectedRumahSakit.id_kecamatan
                 };
-                OnPropertyChanged(nameof(SelectedProvinsiTextBox));
-
+                OnPropertyChanged(nameof(SelectedRumahSakitTextBox));
             }
         }
 
@@ -84,23 +83,18 @@ namespace WpfAppNET.MVVM.ViewModel
         {
             try
             {
+                DataTable dt = GlobalConfig.LoadData("SELECT * FROM rumah_sakit");
 
-                DataTable dt = GlobalConfig.LoadData("SELECT * FROM Provinsi");
-
-                _ProvinsiList.Clear();
+                _RumahSakitList.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
-                    _ProvinsiList.Add(new Provinsi
+                    _RumahSakitList.Add(new RumahSakit
                     {
-                        id_provinsi = row["id_provinsi"].ToString(),
-                        nama_provinsi = row["nama_provinsi"].ToString()
+                        id_rumah_sakit = row["id_rumah_sakit"].ToString(),
+                        nama_rumah_sakit = row["nama_rumah_sakit"].ToString(),
+                        id_kecamatan = row["id_kecamatan"].ToString()
                     });
                 }
-
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    //MessageBox.Show("Data loaded successfully!", "Load Data", MessageBoxButton.OK, MessageBoxImage.Information);
-                });
             }
             catch (Exception ex)
             {
@@ -109,10 +103,13 @@ namespace WpfAppNET.MVVM.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region Command Implementation
 
         private ICommand mInsertCommand;
         private ICommand mUpdateCommand;
@@ -131,9 +128,9 @@ namespace WpfAppNET.MVVM.ViewModel
 
         private class Insert : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private RumahSakitViewModel _viewModel;
 
-            public Insert(ProvinsiViewModel viewModel)
+            public Insert(RumahSakitViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -144,17 +141,15 @@ namespace WpfAppNET.MVVM.ViewModel
 
             public void Execute(object parameter)
             {
-
                 SqlParameter[] parameters = {
-                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
-                    new SqlParameter("@nama_provinsi", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedProvinsiTextBox.nama_provinsi.ToString() }
+                    new SqlParameter("@id_rumah_sakit", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedRumahSakitTextBox.id_rumah_sakit },
+                    new SqlParameter("@nama_rumah_sakit", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedRumahSakitTextBox.nama_rumah_sakit },
+                    new SqlParameter("@id_kecamatan", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedRumahSakitTextBox.id_kecamatan }
                 };
-                GlobalConfig.ExecQuery("SPInsProvinsi", parameters);
+                GlobalConfig.ExecQuery("SPInsRumah", parameters);
                 _viewModel.LoadData();
             }
-
         }
-
 
         public ICommand UpdateCommand
         {
@@ -164,17 +159,14 @@ namespace WpfAppNET.MVVM.ViewModel
                     mUpdateCommand = new Update(this);
                 return mUpdateCommand;
             }
-            set
-            {
-                mUpdateCommand = value;
-            }
+            set { mUpdateCommand = value; }
         }
 
         private class Update : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private RumahSakitViewModel _viewModel;
 
-            public Update(ProvinsiViewModel viewModel)
+            public Update(RumahSakitViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -186,14 +178,13 @@ namespace WpfAppNET.MVVM.ViewModel
             public void Execute(object parameter)
             {
                 SqlParameter[] parameters = {
-                    new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
-                    new SqlParameter("@nama_provinsi", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedProvinsiTextBox.nama_provinsi.ToString() }
+                    new SqlParameter("@id_rumah_sakit", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedRumahSakitTextBox.id_rumah_sakit },
+                    new SqlParameter("@nama_rumah_sakit", SqlDbType.VarChar, 50) { Value = _viewModel.SelectedRumahSakitTextBox.nama_rumah_sakit },
+                    new SqlParameter("@id_kecamatan", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedRumahSakitTextBox.id_kecamatan }
                 };
-                GlobalConfig.ExecQuery("SPUpdProvinsi", parameters);
-
+                GlobalConfig.ExecQuery("SPUpdRumah", parameters);
                 _viewModel.LoadData();
             }
-
         }
 
         public ICommand DeleteCommand
@@ -204,17 +195,14 @@ namespace WpfAppNET.MVVM.ViewModel
                     mDeleteCommand = new Delete(this);
                 return mDeleteCommand;
             }
-            set
-            {
-                mUpdateCommand = value;
-            }
+            set { mDeleteCommand = value; }
         }
 
         private class Delete : ICommand
         {
-            private ProvinsiViewModel _viewModel;
+            private RumahSakitViewModel _viewModel;
 
-            public Delete(ProvinsiViewModel viewModel)
+            public Delete(RumahSakitViewModel viewModel)
             {
                 _viewModel = viewModel;
             }
@@ -230,20 +218,19 @@ namespace WpfAppNET.MVVM.ViewModel
                 if (result == MessageBoxResult.Yes)
                 {
                     SqlParameter[] parameters = {
-                        new SqlParameter("@id_provinsi", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedProvinsiTextBox.id_provinsi.ToString() },
+                        new SqlParameter("@id_rumah_sakit", SqlDbType.VarChar, 16) { Value = _viewModel.SelectedRumahSakitTextBox.id_rumah_sakit }
                     };
-                    GlobalConfig.ExecQuery("SPDelProvinsi", parameters);
+                    GlobalConfig.ExecQuery("SPDelRumah", parameters);
                     _viewModel.LoadData();
-                    _viewModel.SelectedProvinsiTextBox = new Provinsi();
+                    _viewModel.SelectedRumahSakitTextBox = new RumahSakit();
                 }
                 else
                 {
-                    MessageBox.Show("canceled");
+                    MessageBox.Show("Operation canceled");
                 }
             }
-
         }
 
-
+        #endregion
     }
 }
